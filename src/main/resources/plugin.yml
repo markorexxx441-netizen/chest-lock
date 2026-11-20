@@ -1,0 +1,26 @@
+name: ChestLock
+version: '${project.version}'
+main: id.chestlock.ChestLockPlugin
+api-version: '1.20'
+description: Kunci chest pakai sign [KUNCI] dengan limit per rank.
+softdepend: [LuckPerms]
+
+commands:
+  chestlock:
+    description: Perintah utama ChestLock
+    usage: /<command> [help|info|list|unlock|reload]
+    aliases: [kunci, clock]
+
+permissions:
+  chestlock.use:
+    description: Boleh mengunci chest dengan sign [KUNCI]
+    default: true
+  chestlock.unlimited:
+    description: Tidak ada batas jumlah chest yang dikunci
+    default: op
+  chestlock.bypass:
+    description: Boleh membuka dan menghancurkan chest terkunci milik orang lain
+    default: op
+  chestlock.admin:
+    description: Akses command admin (reload, list player lain, paksa buka kunci)
+    default: op

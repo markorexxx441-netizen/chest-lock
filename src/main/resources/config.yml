@@ -1,0 +1,88 @@
+# ==========================================================
+#  ChestLock - config.yml
+#  Setelah edit, jalankan /chestlock reload
+# ==========================================================
+
+# Link Discord yang muncul di pesan saat limit tercapai
+discord-link: "https://discord.gg/GANTI-DENGAN-LINK-KAMU"
+
+# Nama rank yang disebut di pesan limit
+upgrade-rank-name: "Admin"
+
+# Mainkan suara saat kunci berhasil / ditolak
+sounds: true
+
+limits:
+  # Jumlah maksimal chest yang boleh dikunci player TANPA permission khusus
+  # (rank default). Isi -1 kalau mau tanpa batas.
+  # Rank lain diatur lewat LuckPerms:
+  #   chestlock.unlimited  -> tanpa batas
+  #   chestlock.limit.<n>  -> maksimal n chest (contoh: chestlock.limit.5)
+  default: 1
+
+# Block yang bisa dikunci. Chest ganda dihitung 1 kunci.
+lockable-blocks:
+  - CHEST
+  - TRAPPED_CHEST
+  - BARREL
+
+sign:
+  # Tulisan di baris pertama sign yang memicu penguncian (tidak peduli huruf besar/kecil)
+  keywords:
+    - "[KUNCI]"
+    - "[LOCK]"
+  # Sign yang sudah terkunci di-wax supaya tidak bisa diedit / diwarnai siapa pun
+  wax: true
+  # Isi sign setelah terkunci. {player} = nama pemilik
+  locked-lines:
+    - "&a&l[TERKUNCI]"
+    - "&0{player}"
+    - ""
+    - ""
+
+protection:
+  # Hopper (dan minecart hopper) tidak bisa mengambil / memasukkan item ke chest terkunci
+  hoppers: true
+  # Ledakan (creeper, TNT, dll) tidak bisa menghancurkan chest dan sign terkunci
+  explosions: true
+
+messages:
+  prefix: "&8[&6ChestLock&8] &r"
+  no-permission: "&cKamu tidak punya izin untuk itu."
+  players-only: "&cCommand ini hanya bisa dipakai oleh player."
+  locked: "&aChest berhasil dikunci! &7Hanya kamu yang bisa membukanya. &8(&e{used}&8/&e{limit}&8)"
+  limit-reached:
+    - "&cKamu hanya bisa mengunci &e{limit} chest&c! &8(terpakai: &e{used}&8/&e{limit}&8)"
+    - "&7Mau mengunci lebih banyak chest? Upgrade rank ke &6{rank} &7dengan &eopen ticket &7di Discord:"
+    - "&b{discord}"
+  must-attach: "&cSign &e[KUNCI] &charus dipasang menempel di chest (atau barrel)."
+  already-yours: "&eChest ini sudah kamu kunci."
+  already-locked-other: "&cChest ini sudah dikunci oleh &e{owner}&c."
+  access-denied: "&cChest ini dikunci oleh &e{owner}&c."
+  break-denied: "&cTidak bisa dihancurkan, ini dikunci oleh &e{owner}&c."
+  place-denied: "&cKamu tidak bisa menaruh chest di sebelah chest milik &e{owner}&c."
+  sign-protected: "&cSign kunci tidak bisa diedit. Hancurkan sign-nya untuk membuka kunci."
+  unlocked-by-break: "&aKunci dilepas."
+  unlocked: "&aKunci berhasil dibuka. Chest ini sekarang bisa diakses siapa saja."
+  bypass: "&7(bypass) &eKamu mengakses chest milik &f{owner}&e."
+  look-at-lock: "&cArahkan crosshair ke chest atau sign yang terkunci (maks. 6 block)."
+  info:
+    - "&6Pemilik: &f{owner}"
+    - "&6Dikunci pada: &f{date}"
+  list-header: "&6Chest terkunci milik &f{player} &8(&e{used}&8/&e{limit}&8)&6:"
+  list-entry: "&7- &f{location}"
+  list-empty: "&7{player} belum mengunci chest apa pun."
+  reloaded: "&aConfig ChestLock berhasil di-reload."
+  help:
+    - "&6&lChestLock &7- cara pakai:"
+    - "&e1. &7Taruh sign menempel di chest"
+    - "&e2. &7Tulis &f[KUNCI] &7di baris pertama, lalu simpan"
+    - "&e3. &7Sign berubah jadi &a[TERKUNCI]&7, hanya kamu yang bisa membuka chest"
+    - "&e/chestlock info &7- lihat pemilik chest yang kamu tatap"
+    - "&e/chestlock list &7- daftar chest yang kamu kunci"
+    - "&e/chestlock unlock &7- buka kunci chest yang kamu tatap"
+    - "&7Atau cukup hancurkan sign-nya untuk membuka kunci."
+  help-admin:
+    - "&c/chestlock list <player> &7- lihat chest terkunci milik player lain"
+    - "&c/chestlock unlock &7- paksa buka kunci chest siapa pun"
+    - "&c/chestlock reload &7- reload config"
